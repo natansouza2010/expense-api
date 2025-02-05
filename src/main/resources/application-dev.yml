@@ -1,0 +1,22 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/despesas
+    username: dev_user
+    password: dev_pass
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # Atualiza o banco no dev
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+server:
+  port: 8080

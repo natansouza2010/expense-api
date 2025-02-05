@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://db:3306/despesas
+    username: prod_user
+    password: prod_pass
+  jpa:
+    hibernate:
+      ddl-auto: validate  # Apenas valida as tabelas no prod
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  server:
+    port: 8080

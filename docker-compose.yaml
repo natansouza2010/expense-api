@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev  # Use Dockerfile.prod na produção
+    container_name: expense-api
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev  # Alterar para 'prod' na produção
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/despesas
+      SPRING_DATASOURCE_USERNAME: dev_user
+      SPRING_DATASOURCE_PASSWORD: dev_pass
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_USER: dev_user
+      POSTGRES_PASSWORD: dev_pass
+      POSTGRES_DB: despesas
+    ports:
+      - "5432:5432"
