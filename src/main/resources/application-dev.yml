@@ -1,4 +1,6 @@
 spring:
+  config:
+    import: optional:file:.env[.properties]
   security:
     oauth2:
       client:
@@ -6,6 +8,10 @@ spring:
           google:
             client-id: ${CLIENT_ID}
             client-secret: ${CLIENT_SECRET}
+            scope:
+              - email
+              - profile
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
 
   datasource:
     url: jdbc:postgresql://localhost:5432/despesas
@@ -14,9 +20,11 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update  # Atualiza o banco no dev
+      ddl-auto: create-drop  # Atualiza o banco no dev
       dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
 
+
 server:
   port: 8080
+

@@ -23,10 +23,6 @@ public class ExceptionGlobalHandler {
         return buildResponseEntity(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ExceptionDetails> handleGenericException(Exception ex) {
-        return buildResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, "Ocorreu um erro inesperado.");
-    }
 
     private ResponseEntity<ExceptionDetails> buildResponseEntity(HttpStatus status, String message) {
         ExceptionDetails details = new ExceptionDetails(status.value(), message);
